@@ -1,0 +1,16 @@
+chargingdemoprocs/GetAndLockUser.class
+chargingdemoprocs/AddCredit.class
+chargingdemoprocs/AddCreditUserStatus.class
+chargingdemoprocs/ReportQuotaUsageStatus.class
+chargingdemoprocs/GetUser.class
+chargingdemoprocs/StatusAndData.class
+chargingdemoprocs/UpsertUser.class
+chargingdemoprocs/ReferenceData.class
+chargingdemoprocs/UserObject.class
+chargingdemoprocs/UpdateLockedUser.class
+chargingdemoprocs/ReportQuotaUsage.class
+chargingdemoprocs/DelUser.class
+chargingdemoprocs/UserObject$UserObjectUsage.class
+chargingdemoprocs/VoltAPIProcedure.class
+chargingdemoprocs/ExtraUserData.class
+chargingdemoprocs/UserObject$UserRecentTransactions.class

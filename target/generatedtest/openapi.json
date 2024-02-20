@@ -1,0 +1,619 @@
+{
+  "openapi" : "3.0.1",
+  "paths" : {
+    "/addCredit" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "Adds Credit",
+        "description" : "Adds Credit",
+        "operationId" : "run",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "extraCredit",
+          "in" : "path",
+          "description" : "Credit Delta",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "txnId",
+          "in" : "path",
+          "description" : "Transaction ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Added",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AddCreditUserStatus"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delUser" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "Delete User",
+        "description" : "Delete User",
+        "operationId" : "run_1",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Success",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "202" : {
+            "description" : "Success",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/GetAndLockUser" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "GetAndLockUser",
+        "description" : "GetAndLockUser",
+        "operationId" : "run_2",
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=utf-8" : {
+              "schema" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Locked",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserObject"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getUser" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "GetUser",
+        "description" : "GetUser",
+        "operationId" : "run_3",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Locked",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UserObject"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ReportQuotaUsage" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "Spends Credit",
+        "description" : "Spends Credit",
+        "operationId" : "run_4",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "unitsUsed",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "unitsWanted",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "inputSessionId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "txnId",
+          "in" : "path",
+          "description" : "User ID",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Locked",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReportQuotaUsageStatus"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/UpdateLockedUser" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "UpdateLockedUser",
+        "description" : "UpdateLockedUser",
+        "operationId" : "run_5",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "path",
+          "description" : "userId",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "sessionId",
+          "in" : "path",
+          "description" : "sessionId",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }, {
+          "name" : "jsonPayload",
+          "in" : "path",
+          "description" : "jsonPayload",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "deltaOperationName",
+          "in" : "path",
+          "description" : "deltaOperationName",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Locked",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/UpsertUser" : {
+      "post" : {
+        "tags" : [ "chargingdemoprocs" ],
+        "summary" : "UpsertUser",
+        "description" : "UpsertUser",
+        "operationId" : "run_6",
+        "requestBody" : {
+          "content" : {
+            "application/json;charset=utf-8" : {
+              "schema" : {
+                "type" : "integer",
+                "format" : "int64"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Locked",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "No Such User",
+            "content" : {
+              "application/json;charset&#x3D;utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "AddCreditUserStatus" : {
+        "type" : "object",
+        "properties" : {
+          "userId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "balance" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "currentlyAllocated" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "ColumnInfo" : {
+        "type" : "object"
+      },
+      "VoltTable" : {
+        "type" : "object",
+        "properties" : {
+          "buffer" : {
+            "type" : "object",
+            "properties" : {
+              "short" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "char" : {
+                "type" : "string"
+              },
+              "int" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "long" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "float" : {
+                "type" : "number",
+                "format" : "float"
+              },
+              "double" : {
+                "type" : "number",
+                "format" : "double"
+              },
+              "direct" : {
+                "type" : "boolean"
+              },
+              "readOnly" : {
+                "type" : "boolean"
+              }
+            }
+          },
+          "statusCode" : {
+            "type" : "string",
+            "format" : "byte"
+          },
+          "rowCount" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "columnCount" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "serializedSize" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tableSchema" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ColumnInfo"
+            }
+          },
+          "rawRow" : {
+            "type" : "object",
+            "properties" : {
+              "short" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "char" : {
+                "type" : "string"
+              },
+              "int" : {
+                "type" : "integer",
+                "format" : "int32"
+              },
+              "long" : {
+                "type" : "integer",
+                "format" : "int64"
+              },
+              "float" : {
+                "type" : "number",
+                "format" : "float"
+              },
+              "double" : {
+                "type" : "number",
+                "format" : "double"
+              },
+              "direct" : {
+                "type" : "boolean"
+              },
+              "readOnly" : {
+                "type" : "boolean"
+              }
+            }
+          },
+          "row" : {
+            "type" : "string"
+          },
+          "activeRowIndex" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "rowObjects" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "TimestampType" : {
+        "type" : "object",
+        "properties" : {
+          "time" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "usec" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "UserObject" : {
+        "type" : "object",
+        "properties" : {
+          "userId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "statusCode" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "lockId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "userLastSeen" : {
+            "$ref" : "#/components/schemas/TimestampType"
+          },
+          "userSoftlockExpiry" : {
+            "$ref" : "#/components/schemas/TimestampType"
+          },
+          "balance" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "userUsage" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/UserObjectUsage"
+            }
+          },
+          "recentTransactions" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/UserRecentTransactions"
+            }
+          }
+        }
+      },
+      "UserObjectUsage" : {
+        "type" : "object",
+        "properties" : {
+          "allocatedAmount" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "sessionId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "lastSeen" : {
+            "$ref" : "#/components/schemas/TimestampType"
+          }
+        }
+      },
+      "UserRecentTransactions" : {
+        "type" : "object",
+        "properties" : {
+          "txnId" : {
+            "type" : "string"
+          },
+          "txnTime" : {
+            "$ref" : "#/components/schemas/TimestampType"
+          },
+          "sessionId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "approvedAmount" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "spentAmount" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "purpose" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReportQuotaUsageStatus" : {
+        "type" : "object",
+        "properties" : {
+          "statusCode" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "balance" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "sessionId" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "currentlyAllocated" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      }
+    }
+  }
+}
